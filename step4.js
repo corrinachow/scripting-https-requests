@@ -35,3 +35,7 @@ var requestOptions = {
 
 
 getHTML(requestOptions, printHTML);
+
+module.exports = function getHTML (options, callback) {
+
+}

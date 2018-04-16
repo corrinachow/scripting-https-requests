@@ -6,7 +6,6 @@ const functions = {
 }
 };
 
-
 module.exports = function getHTML (options, callback) {
   console.log(callback)
   console.log(options, callback);
@@ -14,7 +13,6 @@ module.exports = function getHTML (options, callback) {
     https.get(options, function (response) {
 
     let output = ''
-
 
     response.setEncoding('utf8');
     response.on('error', function() {
@@ -30,12 +28,14 @@ module.exports = function getHTML (options, callback) {
     // (the `end` of the stream)
     response.on('end', function() {
       console.log('Response stream complete.');
-      if(functions[callback] && (typeof functions[callback]) === 'function') {
-        functions[callback](output);
-      } else {
-        console.log(`Callback doesn't exist`)
-      }
+      // if(functions[callback] && (typeof functions[callback]) === 'function') {
+      //   functions[callback](output);
+      // } else {
+      //   console.log(`Callback doesn't exist`)
+      // }
+      callback(output)
     });
+    return output;
   });
 }
 
